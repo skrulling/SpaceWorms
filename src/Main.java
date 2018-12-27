@@ -28,7 +28,7 @@ public class Main {
         System.out.println("\n\nThis program will now run an algorithm that will calculate" +
                 " the least amount of dice throws one can use to win a game of space worms on " +
                 "the current board.");
-        System.out.println("\nRunning algoritm on board..");
+        System.out.println("\nRunning algorithm on board..");
 
         int minThrows = Algorithm.findMinDiceThrows(board);
         System.out.println("\nThe minimum amount of throws required to win the game on this board is:\n" +
@@ -42,7 +42,6 @@ public class Main {
         int minThrowsPlayers = 10000;
         int maxThrowsPlayers = 0;
         // Array used to keep track of how many players end up using the different amounts of throws
-        // We only make 1000 spaces since we dont
         int[] stats = new int[1000];
         // Running the game 10 000 times
         for (int i = 0; i < 10000; i++){
