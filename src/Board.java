@@ -11,6 +11,11 @@ public class Board {
     private int finish;
     private ArrayList<Square> squares;
 
+    /**
+     * A complete Board with all squares is built from a given JSON object.
+     * It will follow the urls to the next squares until the full board is built
+     * @param objectBOARD JSON object representing the board
+     */
     public Board(JSONObject objectBOARD) {
         this.name = objectBOARD.getString("name");
         this.dimX = objectBOARD.getInt("dimX");
@@ -22,6 +27,7 @@ public class Board {
         String URLstart = objectBOARD.getString("startSquare").replaceAll("http", "https");
 
         for (int i = start; i <= (dimX * dimY); i++){
+            System.out.print("#");
             String url = (i == 1) ? URLstart : squares.get(i - 2).getNextURL();
             try {
                 JSONObject jsonSquare = JSONUtils.JSONfromURL(url);
@@ -41,6 +47,7 @@ public class Board {
             }
 
         }
+        System.out.println("\nBoard is done!\n");
     }
 
     public Square getSquareAt(int num){

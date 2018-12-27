@@ -9,6 +9,11 @@ public class Player {
     private ArrayList<Integer> previousMoves;
     private Board board;
 
+    /**
+     * Player used to play space worms on given board
+     * @param name The name you want to give the player
+     * @param board Board the player will be playing on
+     */
     public Player(String name, Board board){
         this.name = name;
         position = 1;
@@ -16,23 +21,30 @@ public class Player {
         this.board = board;
     }
 
-    public void goToNext(){
-        int pos = position + 1;
-        goToSquare(pos);
-    }
-
+    /**
+     * Move player to given position on board
+     * @param pos position the player should be moved to
+     */
     public void goToSquare(int pos){
         if (pos <= 72){
             Square nextSquare = board.getSquareAt(pos);
             position = nextSquare.isHasWormhole() ? nextSquare.getWormhole() : pos;
-            System.out.println(name + " moved to position " + position);
+            //System.out.println(name + " moved to position " + position);
             previousMoves.add(position);
-        } else {
-            System.out.println("Tried to move out of bounds, so player stayed put this round!");
         }
+//        else {
+//            System.out.println("Tried to move out of bounds, so player stayed put this round!");
+//        }
 
     }
 
+    public int getNumberOfMoves(){
+        return previousMoves.size();
+    }
+
+    /**
+     * Roll the dice, and move player to correct position
+     */
     public void moveForwardDiceRoll(){
         int steps = rollDice();
         int pos = position + steps;
@@ -41,7 +53,7 @@ public class Player {
 
     private int rollDice(){
         int num = rnd.nextInt(6) + 1;
-        System.out.println("Dice rolled: " + num);
+        //System.out.println("Dice rolled: " + num);
         return num;
     }
 
